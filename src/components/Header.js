@@ -3,10 +3,12 @@ import { Link as RouterLink, useLocation } from 'react-router-dom';
 
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import Brightness2Icon from '@mui/icons-material/Brightness2';
+import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import WbSunnyIcon from '@mui/icons-material/WbSunny';
 import Avatar from '@mui/material/Avatar';
 
@@ -14,11 +16,12 @@ import AppContext from '../context/AppContext';
 import LogoIcon from './LogoIcon';
 
 import { stringAvatar } from '../util/utils';
+import { Margin, Padding } from '@mui/icons-material';
 
 const Header = () => {
   const location = useLocation();
 
-  const { darkMode, switchDarkMode, user } = useContext(AppContext);
+  const { darkMode, switchDarkMode, user, logout } = useContext(AppContext);
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -48,14 +51,21 @@ const Header = () => {
           {location && location.pathname === '/' && (
             <>
               {user && (
-                <Avatar
-                  color="inherit"
-                  component={RouterLink}
-                  to="/files"
-                  alt={user.name}
-                  src={`/static/images/avatar/${user.name}.jpg`}
-                  {...stringAvatar(user.name)}
-                />
+                <>
+                  <Avatar
+                    color="inherit"
+                    component={RouterLink}
+                    to="/files"
+                    alt={user.name}
+                    src={`/static/images/avatar/${user.name}.jpg`}
+                    {...stringAvatar(user.name)}
+                  />
+                  <Box marginX={2}>
+                    <Button onClick={logout}>
+                      <ExitToAppIcon color="error" />
+                    </Button>
+                  </Box>
+                </>
               )}
             </>
           )}
@@ -65,7 +75,6 @@ const Header = () => {
             edge="start"
             color="inherit"
             aria-label="menu"
-            sx={{ ml: 2 }}
             onClick={switchDarkMode}
           >
             {darkMode ? (

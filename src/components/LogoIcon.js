@@ -2,12 +2,12 @@ import { SvgIcon } from '@mui/material';
 import React from 'react';
 
 const LogoIcon = (props) => {
-  const fill = props.fill || 'none';
+  const fill = props.fill || 'white';
   const stroke = props.stroke || 'white';
   const strokeWidth = props.strokeWidth || 1;
 
   return (
-    <SvgIcon {...props}>
+    <SvgIcon viewBox="0 0 512 512" {...props}>
       <path
         fill={fill}
         stroke={stroke}

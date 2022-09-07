@@ -16,7 +16,6 @@ import AppContext from '../context/AppContext';
 import LogoIcon from './LogoIcon';
 
 import { stringAvatar } from '../util/utils';
-import { Margin, Padding } from '@mui/icons-material';
 
 const Header = () => {
   const location = useLocation();

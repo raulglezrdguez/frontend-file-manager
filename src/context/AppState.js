@@ -69,6 +69,8 @@ const AppState = (props) => {
         switchDarkMode,
         user: state.user,
         files: state.files,
+        setFiles,
+        updateFiles,
         login,
         logout,
       }}

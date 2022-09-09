@@ -85,15 +85,13 @@ const AppState = (props) => {
       const formData = new FormData();
       formData.append('filetoupload', payload.filetoupload);
       formData.append('name', payload.name);
-      console.log({ name: payload.name, filetoupload: payload.filetoupload });
 
       const result = await axios.post(
         `${process.env.REACT_APP_SERVER_HOST}file/upload`,
-        // formData,
-        { name: payload.name, filetoupload: payload.filetoupload },
+        formData,
         {
           headers: {
-            // 'Content-Type': 'multipart/form-data',
+            'Content-Type': 'multipart/form-data',
             Authorization: `Bearer ${user.token}`,
           },
         }

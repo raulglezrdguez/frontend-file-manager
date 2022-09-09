@@ -21,8 +21,11 @@ function AddFiles() {
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
-    if (file) {
+    if (file && file.size > 0) {
       setFiletoupload(file);
+    } else {
+      setFiletoupload(null);
+      console.log('file must has size > 0');
     }
   };
 

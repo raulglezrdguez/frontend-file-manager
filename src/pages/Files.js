@@ -7,6 +7,7 @@ import Typography from '@mui/material/Typography';
 import AppContext from '../context/AppContext';
 import FileDetails from '../components/FileDetails';
 import RedTypography from '../components/RedTypography';
+import AddFiles from '../components/AddFiles';
 
 function Files() {
   const { user, files, setFiles } = useContext(AppContext);
@@ -36,6 +37,7 @@ function Files() {
 
   return (
     <Stack direction="column" spacing={2} alignItems="center" marginTop={5}>
+      <AddFiles />
       <Typography variant="h6" gutterBottom component="div">
         Files
       </Typography>

@@ -1,3 +1,4 @@
+import React, { useContext, useState } from 'react';
 import {
   Button,
   Card,
@@ -7,19 +8,24 @@ import {
   TextField,
   Typography,
 } from '@mui/material';
-import React, { useState } from 'react';
+
+import AppContext from '../context/AppContext';
 import { dateToString } from '../util/dateFormat';
 
 function FileDetails({ file }) {
   const { id, name, originalFilename, size, status, updatedAt, createdAt } =
     file;
 
+  const { updateFile } = useContext(AppContext);
+
   const [edit, setEdit] = useState(false);
   const [newName, setNewName] = useState(name);
   const [errors, setErrors] = useState({});
 
   const changeName = async () => {
-    console.log(newName);
+    const result = await updateFile({ id: id, name: newName });
+
+    console.log(result);
   };
 
   return (

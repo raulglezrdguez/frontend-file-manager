@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import {
   Button,
   Card,
@@ -7,9 +7,13 @@ import {
   TextField,
   Typography,
 } from '@mui/material';
+
 import UploadIcon from './UploadIcon';
 
+import AppContext from '../context/AppContext';
+
 function AddFiles() {
+  const { uploadFile } = useContext(AppContext);
   const [loadingFile, setLoadingFile] = useState(false);
   const [filetoupload, setFiletoupload] = useState(null);
   const [name, setName] = useState('');
@@ -22,10 +26,13 @@ function AddFiles() {
     }
   };
 
-  const submitForm = (event) => {
+  const submitForm = async (event) => {
     event.preventDefault();
-    console.log(filetoupload);
-    console.log(name);
+
+    const result = await uploadFile({ filetoupload, name });
+    if (result.general) {
+      console.log(result.general);
+    }
   };
 
   return (

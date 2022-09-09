@@ -3,6 +3,7 @@ import {
   LOGOUT,
   SET_FILES,
   UPDATE_FILES,
+  UPLOAD_FILE,
   SWITCH_DARKMODE,
 } from './types';
 
@@ -41,6 +42,9 @@ const AppReducer = (state, action) => {
       file.updatedAt = payload.updatedAt;
       files = state.files.filter((f) => f.id !== payload.fileId);
       files = [...files, file];
+      return { ...state, files };
+    case UPLOAD_FILE:
+      files = [...files, payload];
       return { ...state, files };
 
     default:

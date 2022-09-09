@@ -20,5 +20,5 @@ export const dateToString = (dateString) => {
   const dayIndex = d.getDay();
   const dayName = days[dayIndex];
   const monthName = months[d.getMonth()];
-  return `${dayName}, ${d.getDate()} ${monthName} ${d.getFullYear()}`;
+  return `${dayName}, ${d.getDate()} ${monthName} ${d.getFullYear()} ${d.getHours()}:${d.getMinutes()}`;
 };

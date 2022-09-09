@@ -36,10 +36,13 @@ const AppReducer = (state, action) => {
     case SET_FILES:
       return { ...state, files: payload };
     case UPDATE_FILES:
+      console.log(payload);
       file = state.files.find((f) => f.id === payload.fileId);
       file.name = payload.name;
+      file.updatedAt = payload.updatedAt;
       files = state.files.filter((f) => f.id !== payload.fileId);
       files = [...files, file];
+      console.log(files);
       return { ...state, files };
 
     default:

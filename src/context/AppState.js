@@ -66,7 +66,7 @@ const AppState = (props) => {
           headers: { Authorization: `Bearer ${user.token}` },
         }
       );
-      dispatch({ type: UPDATE_FILES, payload });
+      dispatch({ type: UPDATE_FILES, payload: { ...payload, ...result.data } });
 
       return result.data;
     } catch (error) {

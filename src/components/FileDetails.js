@@ -1,6 +1,7 @@
 import React from 'react';
 
-function FileDetails() {
+function FileDetails(props) {
+  console.log(props);
   return <div>FileDetails</div>;
 }
 

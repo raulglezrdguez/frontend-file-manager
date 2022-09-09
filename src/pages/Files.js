@@ -6,6 +6,7 @@ import Typography from '@mui/material/Typography';
 
 import AppContext from '../context/AppContext';
 import FileDetails from '../components/FileDetails';
+import RedTypography from '../components/RedTypography';
 
 function Files() {
   const { user, files, setFiles } = useContext(AppContext);
@@ -35,7 +36,7 @@ function Files() {
 
   useEffect(() => {
     loadFiles();
-  }, [loadFiles]);
+  }, []);
 
   return (
     <Stack direction="column" spacing={2} alignItems="center" marginTop={5}>
@@ -45,6 +46,8 @@ function Files() {
       {files.map((f) => (
         <FileDetails key={f.id} file={f} />
       ))}
+
+      {errors.general && <RedTypography>{errors.general}</RedTypography>}
     </Stack>
   );
 }

@@ -1,6 +1,7 @@
 import React, { useReducer } from 'react';
 import { ThemeProvider } from '@mui/material/styles';
 import jwtDecode from 'jwt-decode';
+import axios from 'axios';
 
 import AppContext from './AppContext';
 import AppReducer from './AppReducer';
@@ -56,8 +57,27 @@ const AppState = (props) => {
   const setFiles = (payload) => {
     dispatch({ type: SET_FILES, payload });
   };
-  const updateFiles = (payload) => {
-    dispatch({ type: UPDATE_FILES, payload });
+  const updateFile = async (payload) => {
+    try {
+      const result = await axios.patch(
+        `${process.env.REACT_APP_SERVER_HOST}file/file`,
+        payload,
+        {
+          headers: { Authorization: `Bearer ${user.token}` },
+        }
+      );
+      dispatch({ type: UPDATE_FILES, payload });
+
+      return result.data;
+    } catch (error) {
+      if (error.response) {
+        return error.response.data;
+      } else if (error.request) {
+        return { general: 'No response received' };
+      } else {
+        return { general: error.message };
+      }
+    }
   };
 
   const theme = state.darkMode ? darkTheme : lightTheme;
@@ -70,7 +90,7 @@ const AppState = (props) => {
         user: state.user,
         files: state.files,
         setFiles,
-        updateFiles,
+        updateFile,
         login,
         logout,
       }}

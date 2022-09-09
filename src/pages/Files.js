@@ -36,7 +36,7 @@ function Files() {
   }, []);
 
   return (
-    <Stack direction="column" spacing={2} alignItems="center" marginTop={5}>
+    <Stack direction="column" spacing={2} alignItems="center" marginTop={2}>
       <AddFiles />
       <Typography variant="h6" gutterBottom component="div">
         Files

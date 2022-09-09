@@ -1,5 +1,6 @@
 import { Card, Stack, Typography } from '@mui/material';
 import React from 'react';
+import { dateToString } from '../util/dateFormat';
 
 function FileDetails({ file }) {
   const { id, name, originalFilename, size, status, updatedAt, createdAt } =
@@ -30,7 +31,7 @@ function FileDetails({ file }) {
           justifyContent="start"
           alignItems="center"
           spacing={1}
-          padding={1}
+          padding={0}
           style={{ width: '100%' }}
         >
           <Typography variant="caption">Original name:</Typography>
@@ -41,7 +42,7 @@ function FileDetails({ file }) {
           justifyContent="start"
           alignItems="center"
           spacing={1}
-          padding={1}
+          padding={0}
           style={{ width: '100%' }}
         >
           <Typography variant="caption">Size:</Typography>
@@ -52,7 +53,7 @@ function FileDetails({ file }) {
           justifyContent="start"
           alignItems="center"
           spacing={1}
-          padding={1}
+          padding={0}
           style={{ width: '100%' }}
         >
           <Typography variant="caption">Status:</Typography>
@@ -65,11 +66,22 @@ function FileDetails({ file }) {
           justifyContent="start"
           alignItems="center"
           spacing={1}
-          padding={1}
+          padding={0}
           style={{ width: '100%' }}
         >
           <Typography variant="caption">Created at:</Typography>
-          <Typography variant="caption">{createdAt}</Typography>
+          <Typography variant="caption">{dateToString(createdAt)}</Typography>
+        </Stack>
+        <Stack
+          direction="row"
+          justifyContent="start"
+          alignItems="center"
+          spacing={1}
+          padding={0}
+          style={{ width: '100%' }}
+        >
+          <Typography variant="caption">Updated at:</Typography>
+          <Typography variant="caption">{dateToString(updatedAt)}</Typography>
         </Stack>
       </Stack>
     </Card>

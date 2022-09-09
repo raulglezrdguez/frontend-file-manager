@@ -11,19 +11,15 @@ import RedTypography from '../components/RedTypography';
 function Files() {
   const { user, files, setFiles } = useContext(AppContext);
   const [errors, setErrors] = useState({});
-  const [loading, setLoading] = useState(false);
 
   const loadFiles = useCallback(async () => {
     try {
-      setLoading(true);
       const response = await axios.get(
         `${process.env.REACT_APP_SERVER_HOST}file/files`,
         { headers: { Authorization: `Bearer ${user.token}` } }
       );
       setFiles(response.data);
-      setLoading(false);
     } catch (error) {
-      setLoading(false);
       if (error.response) {
         error.response.data ? setErrors(error.response.data) : setErrors({});
       } else if (error.request) {

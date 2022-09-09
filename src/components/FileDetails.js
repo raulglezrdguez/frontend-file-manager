@@ -1,7 +1,9 @@
 import React from 'react';
 
-function FileDetails(props) {
-  console.log(props);
+function FileDetails({ file }) {
+  const { id, name, originalFilename, size, status, updatedAt, createdAt } =
+    file;
+  console.log(name);
   return <div>FileDetails</div>;
 }
 

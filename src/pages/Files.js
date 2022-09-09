@@ -1,5 +1,8 @@
-import axios from 'axios';
 import React, { useCallback, useContext, useEffect, useState } from 'react';
+import axios from 'axios';
+
+import Stack from '@mui/material/Stack';
+import Typography from '@mui/material/Typography';
 
 import AppContext from '../context/AppContext';
 
@@ -33,7 +36,13 @@ function Files() {
     loadFiles();
   }, [loadFiles]);
 
-  return <div>Files</div>;
+  return (
+    <Stack direction="column" spacing={2} alignItems="center" marginTop={5}>
+      <Typography variant="h6" gutterBottom component="div">
+        Files
+      </Typography>
+    </Stack>
+  );
 }
 
 export default Files;

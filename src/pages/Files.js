@@ -5,6 +5,7 @@ import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 
 import AppContext from '../context/AppContext';
+import FileDetails from '../components/FileDetails';
 
 function Files() {
   const { user, files, setFiles } = useContext(AppContext);
@@ -41,6 +42,9 @@ function Files() {
       <Typography variant="h6" gutterBottom component="div">
         Files
       </Typography>
+      {files.map((f) => (
+        <FileDetails key={f.id} file={f} />
+      ))}
     </Stack>
   );
 }

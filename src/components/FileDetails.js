@@ -23,7 +23,7 @@ function FileDetails({ file }) {
   const [errors, setErrors] = useState({});
 
   const changeName = async () => {
-    const result = await updateFile({ id: id, name: newName });
+    const result = await updateFile({ fileId: id, name: newName });
 
     console.log(result);
   };

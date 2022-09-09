@@ -1,14 +1,9 @@
-import {
-  Avatar,
-  Button,
-  Card,
-  CardContent,
-  Stack,
-  Typography,
-} from '@mui/material';
-import React from 'react';
+import React, { useState } from 'react';
+import { Button, Card, CardContent, Stack, Typography } from '@mui/material';
+import UploadIcon from './UploadIcon';
 
 function AddFiles() {
+  const [loadingFile, setLoadingFile] = useState(false);
   return (
     <Stack direction="column" spacing={2} alignItems="center" marginTop={2}>
       <Typography variant="h6" gutterBottom component="div">
@@ -17,14 +12,14 @@ function AddFiles() {
       <Card style={{ width: '80%' }}>
         <CardContent>
           <Button variant="outlined" component="label" disabled={loadingFile}>
-            <Avatar alt="upload file" src={`/static/images/upload.png`} />
+            <UploadIcon />
             <input
               id="photo"
               name="photo"
               type="file"
               style={{ display: 'none' }}
-              accept="image/png, image/jpeg"
-              onChange={handlePhotoChange}
+              accept="*"
+              //   onChange={handlePhotoChange}
             />
           </Button>
         </CardContent>

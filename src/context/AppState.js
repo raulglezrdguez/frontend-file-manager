@@ -68,7 +68,7 @@ const AppState = (props) => {
       );
       dispatch({ type: UPDATE_FILES, payload: { ...payload, ...result.data } });
 
-      return result.data;
+      return { general: `Filename updated to: ${result.data.name}` };
     } catch (error) {
       if (error.response) {
         return error.response.data;

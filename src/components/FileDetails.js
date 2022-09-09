@@ -4,10 +4,13 @@ import {
   Card,
   CardActions,
   CardContent,
+  IconButton,
+  Snackbar,
   Stack,
   TextField,
   Typography,
 } from '@mui/material';
+import CloseIcon from '@mui/icons-material/Close';
 
 import AppContext from '../context/AppContext';
 import { dateToString } from '../util/dateFormat';
@@ -25,8 +28,39 @@ function FileDetails({ file }) {
   const changeName = async () => {
     const result = await updateFile({ fileId: id, name: newName });
 
-    console.log(result);
+    if (result.general) {
+      showSnackbarMessage(result.general);
+    }
   };
+
+  const [snackbarOpened, setSnackbarOpened] = useState(false);
+  const [snackbarMessage, setSnackbarMessage] = useState('message');
+
+  const showSnackbarMessage = (message) => {
+    setSnackbarMessage(message);
+    setSnackbarOpened(true);
+  };
+
+  const handleCloseSnackbar = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setSnackbarOpened(false);
+  };
+
+  const snackbarAction = (
+    <React.Fragment>
+      <IconButton
+        size="small"
+        aria-label="close"
+        color="inherit"
+        onClick={handleCloseSnackbar}
+      >
+        <CloseIcon fontSize="small" />
+      </IconButton>
+    </React.Fragment>
+  );
 
   return (
     <Card style={{ width: '80%' }}>
@@ -154,6 +188,14 @@ function FileDetails({ file }) {
           </Button>
         )}
       </CardActions>
+      <Snackbar
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+        open={snackbarOpened}
+        autoHideDuration={5000}
+        onClose={handleCloseSnackbar}
+        message={snackbarMessage}
+        action={snackbarAction}
+      />
     </Card>
   );
 }

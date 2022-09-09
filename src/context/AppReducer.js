@@ -10,6 +10,7 @@ const AppReducer = (state, action) => {
   const { type, payload } = action;
   let darkMode = null;
   let user = null;
+  let file = null;
   let files = null;
 
   switch (type) {
@@ -35,7 +36,10 @@ const AppReducer = (state, action) => {
     case SET_FILES:
       return { ...state, files: payload };
     case UPDATE_FILES:
-      files = state.files.filter((u) => u.id !== payload.id);
+      file = state.files.find((f) => f.id === payload.id);
+      file.name = payload.name;
+      files = state.files.filter((f) => f.id !== payload.id);
+      files = [...files, file];
       return { ...state, files };
 
     default:

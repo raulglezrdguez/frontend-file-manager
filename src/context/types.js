@@ -8,3 +8,4 @@ export const LOGOUT = 'LOGOUT';
 // fill files list
 export const SET_FILES = 'SET_FILES';
 export const UPDATE_FILES = 'UPDATE_FILES';
+export const UPLOAD_FILE = 'UPLOAD_FILE';

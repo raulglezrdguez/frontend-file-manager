@@ -13,6 +13,7 @@ import {
   LOGOUT,
   SET_FILES,
   UPDATE_FILES,
+  UPLOAD_FILE,
 } from './types';
 
 let user = null;
@@ -79,6 +80,35 @@ const AppState = (props) => {
       }
     }
   };
+  const uploadFile = async (payload) => {
+    try {
+      const formData = new FormData();
+      formData.append('filetoupload', payload.filetoupload);
+      formData.append('name', payload.name);
+
+      const result = await axios.post(
+        `${process.env.REACT_APP_SERVER_HOST}file/upload`,
+        formData,
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+            Authorization: `Bearer ${user.token}`,
+          },
+        }
+      );
+      dispatch({ type: UPLOAD_FILE, payload: { ...result.data } });
+
+      return { general: `File ${result.data.name} uploaded` };
+    } catch (error) {
+      if (error.response) {
+        return error.response.data;
+      } else if (error.request) {
+        return { general: 'No response received' };
+      } else {
+        return { general: error.message };
+      }
+    }
+  };
 
   const theme = state.darkMode ? darkTheme : lightTheme;
 
@@ -91,6 +121,7 @@ const AppState = (props) => {
         files: state.files,
         setFiles,
         updateFile,
+        uploadFile,
         login,
         logout,
       }}

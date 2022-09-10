@@ -32,7 +32,6 @@ const Login = (props) => {
         variables
       );
       setLoading(false);
-      console.log(response.data);
       login(response.data);
       props.history.push('/files');
     } catch (error) {

@@ -148,7 +148,6 @@ const AppState = (props) => {
           responseType: 'blob',
         }
       );
-      console.log(response);
       const href = URL.createObjectURL(response.data);
 
       // create "a" HTLM element with href to file & click
@@ -162,7 +161,7 @@ const AppState = (props) => {
       document.body.removeChild(link);
       URL.revokeObjectURL(`${process.env.REACT_APP_SERVER_HOST}file/download`);
 
-      return { general: `Downloading file` };
+      return { general: `Downloading ${payload.name}.zip` };
     } catch (error) {
       if (error.response) {
         return error.response.data;

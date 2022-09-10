@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import { Grid, Paper } from '@mui/material';
+import { Grid, IconButton, Paper, Snackbar } from '@mui/material';
+import CloseIcon from '@mui/icons-material/Close';
 
 import Home from './pages/Home';
 import Register from './pages/Register';
@@ -15,7 +16,29 @@ import Header from './components/Header';
 import AppContext from './context/AppContext';
 
 const AppRoot = () => {
-  const { user } = useContext(AppContext);
+  const { user, snackbarMessage, snackbarOpened, closeSnackbar } =
+    useContext(AppContext);
+
+  const handleCloseSnackbar = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    closeSnackbar();
+  };
+
+  const snackbarAction = (
+    <React.Fragment>
+      <IconButton
+        size="small"
+        aria-label="close"
+        color="inherit"
+        onClick={handleCloseSnackbar}
+      >
+        <CloseIcon fontSize="small" />
+      </IconButton>
+    </React.Fragment>
+  );
 
   return (
     <Router>
@@ -39,6 +62,14 @@ const AppRoot = () => {
             )}
           </Routes>
         </Grid>
+        <Snackbar
+          anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+          open={snackbarOpened}
+          autoHideDuration={5000}
+          onClose={handleCloseSnackbar}
+          message={snackbarMessage}
+          action={snackbarAction}
+        />
       </Paper>
     </Router>
   );

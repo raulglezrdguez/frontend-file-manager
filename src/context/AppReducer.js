@@ -46,7 +46,7 @@ const AppReducer = (state, action) => {
       files = [...files, file];
       return { ...state, files };
     case UPLOAD_FILE:
-      files = [...files, payload];
+      files = [...state.files, payload];
       return { ...state, files };
 
     case SHOW_SNACKBAR_MESSAGE:

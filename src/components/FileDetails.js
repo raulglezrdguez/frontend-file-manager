@@ -4,13 +4,10 @@ import {
   Card,
   CardActions,
   CardContent,
-  IconButton,
-  Snackbar,
   Stack,
   TextField,
   Typography,
 } from '@mui/material';
-import CloseIcon from '@mui/icons-material/Close';
 
 import AppContext from '../context/AppContext';
 import { dateToString } from '../util/dateFormat';

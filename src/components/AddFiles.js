@@ -7,6 +7,7 @@ import {
   TextField,
   Typography,
 } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
 
 import UploadIcon from './UploadIcon';
 
@@ -17,6 +18,7 @@ function AddFiles() {
   const [loadingFile, setLoadingFile] = useState(false);
   const [filetoupload, setFiletoupload] = useState(null);
   const [name, setName] = useState('');
+  const theme = useTheme();
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
@@ -53,7 +55,7 @@ function AddFiles() {
                 component="label"
                 disabled={loadingFile}
               >
-                <UploadIcon />
+                <UploadIcon fill={theme.palette.primary} />
                 <input
                   id="filetoupload"
                   name="filetoupload"

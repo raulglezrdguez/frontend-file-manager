@@ -14,6 +14,7 @@ import {
   SET_FILES,
   UPDATE_FILES,
   UPLOAD_FILE,
+  SHOW_SNACKBAR_MESSAGE,
 } from './types';
 
 let user = null;
@@ -39,6 +40,8 @@ const initialState = {
   darkMode,
   user,
   files: [],
+  snackbarMessage: 'message',
+  snackbarOpened: false,
 };
 
 const AppState = (props) => {
@@ -111,6 +114,10 @@ const AppState = (props) => {
     }
   };
 
+  const showSnackbarMessage = (payload) => {
+    dispatch({ type: SHOW_SNACKBAR_MESSAGE, payload });
+  };
+
   const theme = state.darkMode ? darkTheme : lightTheme;
 
   return (
@@ -125,6 +132,7 @@ const AppState = (props) => {
         uploadFile,
         login,
         logout,
+        showSnackbarMessage,
       }}
     >
       <ThemeProvider theme={theme}>{props.children}</ThemeProvider>

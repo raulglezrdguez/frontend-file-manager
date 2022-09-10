@@ -2,7 +2,7 @@
 export const SWITCH_DARKMODE = 'SWITCH_DARKMODE';
 
 // snackbar message
-export const SET_SNACKBAR_MESSAGE = 'SET_SNACKBAR_MESSAGE';
+export const SHOW_SNACKBAR_MESSAGE = 'SHOW_SNACKBAR_MESSAGE';
 
 // user management
 export const LOGIN = 'LOGIN';

@@ -19,7 +19,7 @@ function FileDetails({ file }) {
   const { id, name, originalFilename, size, status, updatedAt, createdAt } =
     file;
 
-  const { updateFile } = useContext(AppContext);
+  const { updateFile, showSnackbarMessage } = useContext(AppContext);
 
   const [edit, setEdit] = useState(false);
   const [newName, setNewName] = useState(name);
@@ -32,35 +32,6 @@ function FileDetails({ file }) {
       showSnackbarMessage(result.general);
     }
   };
-
-  const [snackbarOpened, setSnackbarOpened] = useState(false);
-  const [snackbarMessage, setSnackbarMessage] = useState('message');
-
-  const showSnackbarMessage = (message) => {
-    setSnackbarMessage(message);
-    setSnackbarOpened(true);
-  };
-
-  const handleCloseSnackbar = (event, reason) => {
-    if (reason === 'clickaway') {
-      return;
-    }
-
-    setSnackbarOpened(false);
-  };
-
-  const snackbarAction = (
-    <React.Fragment>
-      <IconButton
-        size="small"
-        aria-label="close"
-        color="inherit"
-        onClick={handleCloseSnackbar}
-      >
-        <CloseIcon fontSize="small" />
-      </IconButton>
-    </React.Fragment>
-  );
 
   return (
     <Card style={{ width: '80%' }}>
@@ -188,14 +159,6 @@ function FileDetails({ file }) {
           </Button>
         )}
       </CardActions>
-      <Snackbar
-        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
-        open={snackbarOpened}
-        autoHideDuration={5000}
-        onClose={handleCloseSnackbar}
-        message={snackbarMessage}
-        action={snackbarAction}
-      />
     </Card>
   );
 }

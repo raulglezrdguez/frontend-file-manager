@@ -13,6 +13,10 @@ import UploadIcon from './UploadIcon';
 
 import AppContext from '../context/AppContext';
 
+/**
+ * Component to upload the user files
+ * @returns AddFiles component
+ */
 function AddFiles() {
   const { uploadFile, showSnackbarMessage } = useContext(AppContext);
   const [loadingFile, setLoadingFile] = useState(false);

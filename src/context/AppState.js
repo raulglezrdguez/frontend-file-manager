@@ -132,6 +132,8 @@ const AppState = (props) => {
         uploadFile,
         login,
         logout,
+        snackbarMessage: state.snackbarMessage,
+        snackbarOpened: state.snackbarOpened,
         showSnackbarMessage,
       }}
     >

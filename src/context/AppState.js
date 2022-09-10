@@ -118,11 +118,9 @@ const AppState = (props) => {
     try {
       const result = await axios.delete(
         `${process.env.REACT_APP_SERVER_HOST}file/file`,
-        { fileId: payload },
         {
-          headers: {
-            Authorization: `Bearer ${user.token}`,
-          },
+          headers: { Authorization: `Bearer ${user.token}` },
+          data: { fileId: payload },
         }
       );
       console.log(result.data);
@@ -130,6 +128,7 @@ const AppState = (props) => {
 
       return { general: 'File deleted' };
     } catch (error) {
+      console.log(error);
       if (error.response) {
         return error.response.data;
       } else if (error.request) {

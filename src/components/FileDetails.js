@@ -16,7 +16,8 @@ function FileDetails({ file }) {
   const { id, name, originalFilename, size, status, updatedAt, createdAt } =
     file;
 
-  const { updateFile, showSnackbarMessage } = useContext(AppContext);
+  const { updateFile, deleteFile, showSnackbarMessage } =
+    useContext(AppContext);
 
   const [edit, setEdit] = useState(false);
   const [newName, setNewName] = useState(name);
@@ -30,8 +31,11 @@ function FileDetails({ file }) {
     }
   };
 
-  const deleteFile = async () => {
-    console.log('delete file');
+  const removeFile = async () => {
+    const result = await deleteFile(id);
+    if (result.general) {
+      showSnackbarMessage(result.general);
+    }
   };
 
   return (
@@ -159,7 +163,7 @@ function FileDetails({ file }) {
             <Button size="small" onClick={() => setEdit(true)}>
               Edit
             </Button>
-            <Button size="small" color="error" onClick={deleteFile}>
+            <Button size="small" color="error" onClick={removeFile}>
               Delete
             </Button>
           </>

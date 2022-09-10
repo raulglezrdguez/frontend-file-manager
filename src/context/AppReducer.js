@@ -7,6 +7,7 @@ import {
   SWITCH_DARKMODE,
   SHOW_SNACKBAR_MESSAGE,
   CLOSE_SNACKBAR,
+  DELETE_FILE,
 } from './types';
 
 const AppReducer = (state, action) => {
@@ -46,6 +47,9 @@ const AppReducer = (state, action) => {
       return { ...state, files };
     case UPLOAD_FILE:
       files = [...state.files, payload];
+      return { ...state, files };
+    case DELETE_FILE:
+      files = state.files.filter((f) => f.id !== payload);
       return { ...state, files };
 
     case SHOW_SNACKBAR_MESSAGE:

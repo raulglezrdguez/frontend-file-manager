@@ -39,7 +39,7 @@ function FileDetails({ file }) {
   };
 
   const getFile = async () => {
-    const result = await downloadFile(id);
+    const result = await downloadFile({ fileId: id, name });
     if (result.general) {
       showSnackbarMessage(result.general);
     } else {

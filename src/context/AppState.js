@@ -143,7 +143,7 @@ const AppState = (props) => {
       const response = await axios.get(
         `${process.env.REACT_APP_SERVER_HOST}file/download`,
         {
-          params: { fileId: payload },
+          params: { fileId: payload.fileId },
           headers: { Authorization: `Bearer ${user.token}` },
           responseType: 'blob',
         }
@@ -154,7 +154,7 @@ const AppState = (props) => {
       // create "a" HTLM element with href to file & click
       const link = document.createElement('a');
       link.href = href;
-      link.setAttribute('download', 'file.zip'); //or any other extension
+      link.setAttribute('download', `${payload.name}.zip`); //or any other extension
       document.body.appendChild(link);
       link.click();
 

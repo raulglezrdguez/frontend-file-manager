@@ -12,6 +12,11 @@ import {
 import AppContext from '../context/AppContext';
 import { dateToString } from '../util/dateFormat';
 
+/**
+ * Show file details. It allows edit the name, download and delete the file
+ * @param {object} file file to work with
+ * @returns FileDetails component
+ */
 function FileDetails({ file, editMode = false }) {
   const { id, name, originalFilename, size, status, updatedAt, createdAt } =
     file;
@@ -88,6 +93,20 @@ function FileDetails({ file, editMode = false }) {
             >
               <Typography variant="h5">Name:</Typography>
               <Typography variant="h5">{name}</Typography>
+            </Stack>
+          )}
+
+          {file.owner && (
+            <Stack
+              direction="row"
+              justifyContent="start"
+              alignItems="center"
+              spacing={1}
+              padding={0}
+              style={{ width: '100%' }}
+            >
+              <Typography variant="caption">Owner:</Typography>
+              <Typography variant="caption">{file.owner}</Typography>
             </Stack>
           )}
 

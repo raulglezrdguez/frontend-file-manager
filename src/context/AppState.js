@@ -138,6 +138,23 @@ const AppState = (props) => {
       }
     }
   };
+  const downloadFile = async (payload) => {
+    try {
+      await axios.get(`${process.env.REACT_APP_SERVER_HOST}file/download`, {
+        params: { fileId: payload },
+        headers: { Authorization: `Bearer ${user.token}` },
+      });
+      return { general: `File downloading` };
+    } catch (error) {
+      if (error.response) {
+        return error.response.data;
+      } else if (error.request) {
+        return { general: 'No response received' };
+      } else {
+        return { general: error.message };
+      }
+    }
+  };
 
   const showSnackbarMessage = (payload) => {
     dispatch({ type: SHOW_SNACKBAR_MESSAGE, payload });
@@ -159,6 +176,7 @@ const AppState = (props) => {
         updateFile,
         uploadFile,
         deleteFile,
+        downloadFile,
         login,
         logout,
         snackbarMessage: state.snackbarMessage,

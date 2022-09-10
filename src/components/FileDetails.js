@@ -16,7 +16,7 @@ function FileDetails({ file }) {
   const { id, name, originalFilename, size, status, updatedAt, createdAt } =
     file;
 
-  const { updateFile, deleteFile, showSnackbarMessage } =
+  const { updateFile, deleteFile, downloadFile, showSnackbarMessage } =
     useContext(AppContext);
 
   const [edit, setEdit] = useState(false);

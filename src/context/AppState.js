@@ -140,11 +140,29 @@ const AppState = (props) => {
   };
   const downloadFile = async (payload) => {
     try {
-      await axios.get(`${process.env.REACT_APP_SERVER_HOST}file/download`, {
-        params: { fileId: payload },
-        headers: { Authorization: `Bearer ${user.token}` },
-      });
-      return { general: `File downloading` };
+      const response = await axios.get(
+        `${process.env.REACT_APP_SERVER_HOST}file/download`,
+        {
+          params: { fileId: payload },
+          headers: { Authorization: `Bearer ${user.token}` },
+          responseType: 'blob',
+        }
+      );
+      console.log(response);
+      const href = URL.createObjectURL(response.data);
+
+      // create "a" HTLM element with href to file & click
+      const link = document.createElement('a');
+      link.href = href;
+      link.setAttribute('download', 'file.zip'); //or any other extension
+      document.body.appendChild(link);
+      link.click();
+
+      // clean up "a" element & remove ObjectURL
+      document.body.removeChild(link);
+      URL.revokeObjectURL(`${process.env.REACT_APP_SERVER_HOST}file/download`);
+
+      return { general: `Downloading file` };
     } catch (error) {
       if (error.response) {
         return error.response.data;

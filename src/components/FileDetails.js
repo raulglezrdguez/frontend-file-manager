@@ -42,6 +42,8 @@ function FileDetails({ file }) {
     const result = await downloadFile(id);
     if (result.general) {
       showSnackbarMessage(result.general);
+    } else {
+      showSnackbarMessage("Can't download file: maybe it's not zipped yet");
     }
   };
 

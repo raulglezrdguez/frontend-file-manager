@@ -4,10 +4,11 @@ import {
   SET_FILES,
   UPDATE_FILES,
   UPLOAD_FILE,
+  DELETE_FILE,
+  SET_ALL_FILES,
   SWITCH_DARKMODE,
   SHOW_SNACKBAR_MESSAGE,
   CLOSE_SNACKBAR,
-  DELETE_FILE,
 } from './types';
 
 const AppReducer = (state, action) => {
@@ -51,6 +52,9 @@ const AppReducer = (state, action) => {
     case DELETE_FILE:
       files = state.files.filter((f) => f.id !== payload);
       return { ...state, files };
+
+    case SET_ALL_FILES:
+      return { ...state, allFiles: payload };
 
     case SHOW_SNACKBAR_MESSAGE:
       return { ...state, snackbarMessage: payload, snackbarOpened: true };

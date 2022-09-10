@@ -15,6 +15,7 @@ import {
   UPDATE_FILES,
   UPLOAD_FILE,
   DELETE_FILE,
+  SET_ALL_FILES,
   SHOW_SNACKBAR_MESSAGE,
   CLOSE_SNACKBAR,
 } from './types';
@@ -42,6 +43,7 @@ const initialState = {
   darkMode,
   user,
   files: [],
+  allFiles: [],
   snackbarMessage: 'message',
   snackbarOpened: false,
 };
@@ -169,6 +171,10 @@ const AppState = (props) => {
     }
   };
 
+  const setAllFiles = (payload) => {
+    dispatch({ type: SET_ALL_FILES, payload });
+  };
+
   const showSnackbarMessage = (payload) => {
     dispatch({ type: SHOW_SNACKBAR_MESSAGE, payload });
   };
@@ -190,6 +196,7 @@ const AppState = (props) => {
         uploadFile,
         deleteFile,
         downloadFile,
+        setAllFiles,
         login,
         logout,
         snackbarMessage: state.snackbarMessage,

@@ -9,8 +9,11 @@ export const CLOSE_SNACKBAR = 'CLOSE_SNACKBAR';
 export const LOGIN = 'LOGIN';
 export const LOGOUT = 'LOGOUT';
 
-// fill files list
+// files list
 export const SET_FILES = 'SET_FILES';
 export const UPDATE_FILES = 'UPDATE_FILES';
 export const UPLOAD_FILE = 'UPLOAD_FILE';
 export const DELETE_FILE = 'DELETE_FILE';
+
+// all files list
+export const SET_ALL_FILES = 'SET_ALL_FILES';

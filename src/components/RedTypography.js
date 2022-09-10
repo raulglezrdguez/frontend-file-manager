@@ -1,6 +1,9 @@
 import { withStyles } from '@mui/styles';
 import Typography from '@mui/material/Typography';
 
+/**
+ * Typography with red color
+ */
 const RedTypography = withStyles({
   root: {
     color: '#FF0000',

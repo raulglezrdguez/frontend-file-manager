@@ -1,6 +1,11 @@
 import { SvgIcon } from '@mui/material';
 import React from 'react';
 
+/**
+ * UploadIcon component
+ * @param {object} props fill, stroke and strokeWith parameters
+ * @returns UploadIcon component
+ */
 const UploadIcon = (props) => {
   const fill = props.fill || 'white';
   const stroke = props.stroke || 'white';

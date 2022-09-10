@@ -1,6 +1,11 @@
 import { SvgIcon } from '@mui/material';
 import React from 'react';
 
+/**
+ * Application logo
+ * @param {object} props fill, stroke and strokeWith parameters
+ * @returns LogoIcon component
+ */
 const LogoIcon = (props) => {
   const fill = props.fill || 'white';
   const stroke = props.stroke || 'white';

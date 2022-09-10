@@ -6,6 +6,7 @@ import {
   UPLOAD_FILE,
   SWITCH_DARKMODE,
   SHOW_SNACKBAR_MESSAGE,
+  CLOSE_SNACKBAR,
 } from './types';
 
 const AppReducer = (state, action) => {
@@ -50,6 +51,9 @@ const AppReducer = (state, action) => {
 
     case SHOW_SNACKBAR_MESSAGE:
       return { ...state, snackbarMessage: payload, snackbarOpened: true };
+
+    case CLOSE_SNACKBAR:
+      return { ...state, snackbarOpened: false };
 
     default:
       return state;

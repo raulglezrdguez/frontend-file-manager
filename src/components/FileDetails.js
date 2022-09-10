@@ -172,11 +172,11 @@ function FileDetails({ file }) {
             <Button size="small" onClick={() => setEdit(true)}>
               Edit
             </Button>
-            <Button size="small" color="error" onClick={removeFile}>
-              Delete
-            </Button>
             <Button size="small" color="warning" onClick={getFile}>
               Download
+            </Button>
+            <Button size="small" color="error" onClick={removeFile}>
+              Delete
             </Button>
           </>
         )}

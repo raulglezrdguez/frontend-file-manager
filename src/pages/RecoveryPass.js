@@ -48,7 +48,7 @@ const RecoveryPass = (props) => {
       );
       setLoading(false);
       login(response.data);
-      props.history.push('/');
+      props.history.push('/files');
     } catch (error) {
       setLoading(false);
       if (error.response) {

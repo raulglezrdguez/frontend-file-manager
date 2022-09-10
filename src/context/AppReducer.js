@@ -5,6 +5,7 @@ import {
   UPDATE_FILES,
   UPLOAD_FILE,
   SWITCH_DARKMODE,
+  SHOW_SNACKBAR_MESSAGE,
 } from './types';
 
 const AppReducer = (state, action) => {
@@ -46,6 +47,9 @@ const AppReducer = (state, action) => {
     case UPLOAD_FILE:
       files = [...files, payload];
       return { ...state, files };
+
+    case SHOW_SNACKBAR_MESSAGE:
+      return { ...state, snackbarMessage: payload, snackbarOpened: true };
 
     default:
       return state;

@@ -15,6 +15,7 @@ import {
   UPDATE_FILES,
   UPLOAD_FILE,
   SHOW_SNACKBAR_MESSAGE,
+  CLOSE_SNACKBAR,
 } from './types';
 
 let user = null;
@@ -117,6 +118,9 @@ const AppState = (props) => {
   const showSnackbarMessage = (payload) => {
     dispatch({ type: SHOW_SNACKBAR_MESSAGE, payload });
   };
+  const closeSnackbar = () => {
+    dispatch({ type: CLOSE_SNACKBAR });
+  };
 
   const theme = state.darkMode ? darkTheme : lightTheme;
 
@@ -135,6 +139,7 @@ const AppState = (props) => {
         snackbarMessage: state.snackbarMessage,
         snackbarOpened: state.snackbarOpened,
         showSnackbarMessage,
+        closeSnackbar,
       }}
     >
       <ThemeProvider theme={theme}>{props.children}</ThemeProvider>

@@ -15,7 +15,6 @@ const AppReducer = (state, action) => {
   let user = null;
   let file = null;
   let files = null;
-  let index = -1;
 
   switch (type) {
     case SWITCH_DARKMODE:

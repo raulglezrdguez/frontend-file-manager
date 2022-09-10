@@ -38,6 +38,13 @@ function FileDetails({ file }) {
     }
   };
 
+  const getFile = async () => {
+    const result = await downloadFile(id);
+    if (result.general) {
+      showSnackbarMessage(result.general);
+    }
+  };
+
   return (
     <Card style={{ width: '80%' }}>
       <CardContent>
@@ -165,6 +172,9 @@ function FileDetails({ file }) {
             </Button>
             <Button size="small" color="error" onClick={removeFile}>
               Delete
+            </Button>
+            <Button size="small" color="warning" onClick={getFile}>
+              Download
             </Button>
           </>
         )}

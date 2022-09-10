@@ -43,7 +43,7 @@ function Files() {
         Files
       </Typography>
       {files.map((f) => (
-        <FileDetails key={f.id} file={f} />
+        <FileDetails key={f.id} file={f} editMode={true} />
       ))}
 
       {errors.general && <RedTypography>{errors.general}</RedTypography>}

@@ -12,7 +12,7 @@ import {
 import AppContext from '../context/AppContext';
 import { dateToString } from '../util/dateFormat';
 
-function FileDetails({ file }) {
+function FileDetails({ file, editMode = false }) {
   const { id, name, originalFilename, size, status, updatedAt, createdAt } =
     file;
 
@@ -169,14 +169,19 @@ function FileDetails({ file }) {
           </>
         ) : (
           <>
-            <Button size="small" onClick={() => setEdit(true)}>
-              Edit
-            </Button>
+            {editMode && (
+              <>
+                <Button size="small" onClick={() => setEdit(true)}>
+                  Edit
+                </Button>
+                <Button size="small" color="error" onClick={removeFile}>
+                  Delete
+                </Button>
+              </>
+            )}
+
             <Button size="small" color="warning" onClick={getFile}>
               Download
-            </Button>
-            <Button size="small" color="error" onClick={removeFile}>
-              Delete
             </Button>
           </>
         )}

@@ -191,6 +191,7 @@ const AppState = (props) => {
         switchDarkMode,
         user: state.user,
         files: state.files,
+        allFiles: state.allFiles,
         setFiles,
         updateFile,
         uploadFile,

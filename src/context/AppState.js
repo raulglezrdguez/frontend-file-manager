@@ -14,6 +14,7 @@ import {
   SET_FILES,
   UPDATE_FILES,
   UPLOAD_FILE,
+  DELETE_FILE,
   SHOW_SNACKBAR_MESSAGE,
   CLOSE_SNACKBAR,
 } from './types';
@@ -100,10 +101,34 @@ const AppState = (props) => {
           },
         }
       );
-      console.log(result.data);
       dispatch({ type: UPLOAD_FILE, payload: { ...result.data } });
 
       return { general: `File ${result.data.name} uploaded` };
+    } catch (error) {
+      if (error.response) {
+        return error.response.data;
+      } else if (error.request) {
+        return { general: 'No response received' };
+      } else {
+        return { general: error.message };
+      }
+    }
+  };
+  const deleteFile = async (payload) => {
+    try {
+      const result = await axios.delete(
+        `${process.env.REACT_APP_SERVER_HOST}file/file`,
+        { fileId: payload },
+        {
+          headers: {
+            Authorization: `Bearer ${user.token}`,
+          },
+        }
+      );
+      console.log(result.data);
+      dispatch({ type: DELETE_FILE, payload });
+
+      return { general: 'File deleted' };
     } catch (error) {
       if (error.response) {
         return error.response.data;
@@ -134,6 +159,7 @@ const AppState = (props) => {
         setFiles,
         updateFile,
         uploadFile,
+        deleteFile,
         login,
         logout,
         snackbarMessage: state.snackbarMessage,

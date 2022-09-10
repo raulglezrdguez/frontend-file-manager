@@ -30,6 +30,10 @@ function FileDetails({ file }) {
     }
   };
 
+  const deleteFile = async () => {
+    console.log('delete file');
+  };
+
   return (
     <Card style={{ width: '80%' }}>
       <CardContent>
@@ -151,9 +155,14 @@ function FileDetails({ file }) {
             </Button>
           </>
         ) : (
-          <Button size="small" onClick={() => setEdit(true)}>
-            Edit
-          </Button>
+          <>
+            <Button size="small" onClick={() => setEdit(true)}>
+              Edit
+            </Button>
+            <Button size="small" color="error" onClick={deleteFile}>
+              Delete
+            </Button>
+          </>
         )}
       </CardActions>
     </Card>

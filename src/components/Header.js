@@ -17,6 +17,10 @@ import LogoIcon from './LogoIcon';
 
 import { stringAvatar } from '../util/utils';
 
+/**
+ * Component to show the application Header
+ * @returns Header component
+ */
 const Header = () => {
   const location = useLocation();
 

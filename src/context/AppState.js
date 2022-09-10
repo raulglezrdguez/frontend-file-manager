@@ -116,14 +116,10 @@ const AppState = (props) => {
   };
   const deleteFile = async (payload) => {
     try {
-      const result = await axios.delete(
-        `${process.env.REACT_APP_SERVER_HOST}file/file`,
-        {
-          headers: { Authorization: `Bearer ${user.token}` },
-          data: { fileId: payload },
-        }
-      );
-      console.log(result.data);
+      await axios.delete(`${process.env.REACT_APP_SERVER_HOST}file/file`, {
+        headers: { Authorization: `Bearer ${user.token}` },
+        data: { fileId: payload },
+      });
       dispatch({ type: DELETE_FILE, payload });
 
       return { general: 'File deleted' };

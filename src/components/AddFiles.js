@@ -13,11 +13,10 @@ import UploadIcon from './UploadIcon';
 import AppContext from '../context/AppContext';
 
 function AddFiles() {
-  const { uploadFile } = useContext(AppContext);
+  const { uploadFile, showSnackbarMessage } = useContext(AppContext);
   const [loadingFile, setLoadingFile] = useState(false);
   const [filetoupload, setFiletoupload] = useState(null);
   const [name, setName] = useState('');
-  const [errors, setErrors] = useState({});
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
@@ -25,16 +24,18 @@ function AddFiles() {
       setFiletoupload(file);
     } else {
       setFiletoupload(null);
-      console.log('file must has size > 0');
+      showSnackbarMessage('File must have size greater than zero');
     }
   };
 
   const submitForm = async (event) => {
     event.preventDefault();
 
-    const result = await uploadFile({ filetoupload, name });
+    setLoadingFile(true);
+    const result = await uploadFile({ filetoupload, name: name.trim() });
+    setLoadingFile(false);
     if (result.general) {
-      console.log(result.general);
+      showSnackbarMessage(result.general);
     }
   };
 
@@ -70,18 +71,15 @@ function AddFiles() {
                 type="text"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                error={name.length < 4 || (errors.name && errors.name !== '')}
-                helperText={name.length < 4 ? 'Short name' : errors.name}
+                error={name.trim().length < 4}
+                helperText={name.trim().length < 4 ? 'Short name' : ''}
               />
               <Button
                 type="submit"
                 variant="contained"
                 size="large"
                 disabled={
-                  name.length < 4 ||
-                  (errors.name && errors.name !== '') ||
-                  !filetoupload ||
-                  loadingFile
+                  name.trim().length < 4 || !filetoupload || loadingFile
                 }
               >
                 Upload file

@@ -12,7 +12,7 @@ import RedTypography from '../components/RedTypography';
 
 import { re_email } from '../util/regex';
 
-const ForgotPass = (props) => {
+const ForgotPass = () => {
   const [variables, setVariables] = useState({
     email: '',
     password: '',

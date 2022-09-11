@@ -13,7 +13,7 @@ import RedTypography from '../components/RedTypography';
 
 import { re_email } from '../util/regex';
 
-const Register = (props) => {
+const Register = () => {
   const [variables, setVariables] = useState({
     name: '',
     email: '',

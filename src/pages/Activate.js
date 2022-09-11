@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link as RouterLink } from 'react-router-dom';
 import jwtDecode from 'jwt-decode';
+import { useNavigate } from 'react-router-dom';
 
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
@@ -12,7 +13,8 @@ import Link from '@mui/material/Link';
 import AppContext from '../context/AppContext';
 import RedTypography from '../components/RedTypography';
 
-const Activate = (props) => {
+const Activate = () => {
+  const navigate = useNavigate();
   const { login } = useContext(AppContext);
 
   const [decodedToken, setDecodedToken] = useState({
@@ -55,7 +57,7 @@ const Activate = (props) => {
       );
       setLoading(false);
       login(response.data);
-      props.history.push('/files');
+      navigate('/files');
     } catch (error) {
       setLoading(false);
       if (error.response) {

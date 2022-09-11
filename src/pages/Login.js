@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import axios from 'axios';
 import { Link as RouterLink } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
@@ -14,7 +15,8 @@ import RedTypography from '../components/RedTypography';
 
 import { re_email } from '../util/regex';
 
-const Login = (props) => {
+const Login = () => {
+  const navigate = useNavigate();
   const { login } = useContext(AppContext);
 
   const [variables, setVariables] = useState({
@@ -33,7 +35,7 @@ const Login = (props) => {
       );
       setLoading(false);
       login(response.data);
-      props.history.push('/files');
+      navigate('/files');
     } catch (error) {
       setLoading(false);
       if (error.response) {

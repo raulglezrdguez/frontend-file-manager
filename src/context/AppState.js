@@ -71,7 +71,7 @@ const AppState = (props) => {
         `${process.env.REACT_APP_SERVER_HOST}file/file`,
         payload,
         {
-          headers: { Authorization: `Bearer ${user.token}` },
+          headers: { Authorization: `Bearer ${state.user.token}` },
         }
       );
       dispatch({ type: UPDATE_FILES, payload: { ...payload, ...result.data } });
@@ -99,7 +99,7 @@ const AppState = (props) => {
         {
           headers: {
             'Content-Type': 'multipart/form-data',
-            Authorization: `Bearer ${user.token}`,
+            Authorization: `Bearer ${state.user.token}`,
           },
         }
       );
@@ -119,7 +119,7 @@ const AppState = (props) => {
   const deleteFile = async (payload) => {
     try {
       await axios.delete(`${process.env.REACT_APP_SERVER_HOST}file/file`, {
-        headers: { Authorization: `Bearer ${user.token}` },
+        headers: { Authorization: `Bearer ${state.user.token}` },
         data: { fileId: payload },
       });
       dispatch({ type: DELETE_FILE, payload });
@@ -142,7 +142,7 @@ const AppState = (props) => {
         `${process.env.REACT_APP_SERVER_HOST}file/download`,
         {
           params: { fileId: payload.fileId },
-          headers: { Authorization: `Bearer ${user.token}` },
+          headers: { Authorization: `Bearer ${state.user.token}` },
           responseType: 'blob',
         }
       );
